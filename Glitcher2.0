@@ -1,0 +1,216 @@
+char incomingByte;
+int acumulador = 0;
+//int topo = 14200;
+int topo = 500;
+void setup() {
+  pinMode(5, OUTPUT);
+  digitalWrite(5, HIGH);
+  IOMUXC_SW_PAD_CTL_PAD_GPIO_EMC_08 = 0xFF;
+ //noInterrupts();
+  Serial.begin(9600);
+}
+
+void loop() {
+    
+    if(Serial.available()){
+    incomingByte = Serial.read();
+   
+    
+    if(incomingByte == 's'){
+    if(acumulador <= topo){
+       digitalWriteFast(5, HIGH);
+       acumulador++;
+    }
+      digitalWriteFast(5, LOW);
+    
+    Serial.print("enviando glitch de ");
+    Serial.println(acumulador);
+   
+     } 
+
+
+    if(incomingByte == 'a'){
+    if(acumulador <= topo){
+       digitalWriteFast(5, HIGH);
+       acumulador--;
+    }
+      digitalWriteFast(5, LOW);
+    
+    Serial.print("enviando glitch de ");
+    Serial.println(acumulador);
+   
+     } 
+
+     if(incomingByte == 'd'){
+    if(acumulador <= topo){
+       digitalWriteFast(5, HIGH);
+       
+    }
+      digitalWriteFast(5, LOW);
+    
+    Serial.print("enviando glitch de ");
+    Serial.println(acumulador);
+   
+     }
+
+     
+
+    if(incomingByte == '1'){
+
+
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, HIGH);
+    Serial.println("enviando glitch de 1 ciclo");
+   
+      } 
+
+    if(incomingByte == '2'){
+
+
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, HIGH);
+    Serial.println("enviando glitch de 2 ciclos");
+   
+      } 
+
+   if(incomingByte == '3'){
+
+
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, HIGH);
+    Serial.println("enviando glitch de 3 ciclos");
+   
+      } 
+   if(incomingByte == '4'){
+
+
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, HIGH);
+    Serial.println("enviando glitch de 4 ciclos");
+   
+      } 
+      
+   if(incomingByte == '5'){
+
+
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, HIGH);
+    Serial.println("enviando glitch de 5 ciclos");
+   
+      }
+
+   if(incomingByte == '6'){
+
+
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, HIGH);
+    Serial.println("enviando glitch de 6 ciclos");
+   
+      }
+
+
+    if(incomingByte == '7'){
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, HIGH);
+    Serial.println("enviando glitch de 7 ciclos");
+   
+      }
+
+    if(incomingByte == '8'){
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, HIGH);
+    Serial.println("enviando glitch de 8 ciclos");
+   
+      }
+
+    if(incomingByte == '9'){
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, HIGH);
+    Serial.println("enviando glitch de 9 ciclos");
+   
+      }
+
+      
+
+    if(incomingByte == 'f'){
+ 
+ Serial.println("Testando osciloscopio");
+    for (int i = 0; i <=1000000; i++){
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, LOW);
+    digitalWriteFast(5, HIGH);
+    digitalWriteFast(5, HIGH);
+    digitalWriteFast(5, HIGH);
+    digitalWriteFast(5, HIGH);
+    digitalWriteFast(5, HIGH);
+    digitalWriteFast(5, HIGH);
+    digitalWriteFast(5, HIGH);
+    digitalWriteFast(5, HIGH);
+    digitalWriteFast(5, HIGH);
+    digitalWriteFast(5, HIGH);
+    }
+
+    Serial.println("Fim do teste");
+      
+      }
+    
+   
+    if(incomingByte == 't'){
+      acumulador = acumulador + 1;
+      Serial.print("valor do acumulador: ");
+      Serial.println(acumulador);
+      int cont = acumulador;
+      for(cont; cont <= topo; cont++){
+        digitalWriteFast(5, LOW);
+        
+      }
+      digitalWriteFast(5, HIGH);
+     }
+    
+   }
+    
+}
