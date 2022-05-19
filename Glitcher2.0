@@ -8,6 +8,8 @@ void setup() {
   IOMUXC_SW_PAD_CTL_PAD_GPIO_EMC_08 = 0xFF;
  //noInterrupts();
   Serial.begin(9600);
+  Serial.println("GLITCH COM O PINO 5");
+  Serial.println("1 - 9 para ciclos de glitch --- a: decrementa s:incrementa d:repete f: teste de osciliscopio");
 }
 
 void loop() {
